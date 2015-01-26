@@ -18,6 +18,11 @@ Item
 
 Models/Tables
 
+rails g model Cart User:references total:decimal checkout_date:date_time
+rails g migration AddMycartToUsers Cart:references
+rails g model Item description:text name:string price:decimal stock:integer
+rails g model CartItem Item:references Cart:references quantity:integer price:decimal
+
 User
 	active_cart:cart
 
@@ -27,15 +32,15 @@ Cart
 	total:decimal
 	checkout_date:date_time
 
-CartItem
-	item:references
-	cart:references
-	quantity:integer
-	price:decimal
-
 Item
 	#itemID
 	description:text
 	name:string
 	price:decimal
 	stock:integer
+
+CartItem
+	item:references
+	cart:references
+	quantity:integer
+	price:decimal
