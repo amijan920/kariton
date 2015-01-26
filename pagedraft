@@ -1,0 +1,17 @@
+Pages
+
+Authentication
+	login
+	logout
+	viewUser
+	authenticate
+
+Cart
+	addToCart
+	removeFromCart
+	checkOutCart
+	viewCart
+
+Item
+	browseItems (optional parameter: query)
+	
