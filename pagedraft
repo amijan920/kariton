@@ -1,4 +1,4 @@
-Pages
+Pages/Controllers
 
 Authentication
 	login
@@ -14,4 +14,24 @@ Cart
 
 Item
 	browseItems (optional parameter: query)
-	
+
+
+Models/Tables
+
+User
+	name 
+
+Cart
+	cartID
+	UserID
+
+CartItem
+	itemID
+	cartID
+	quantity
+
+Item
+	itemID
+	name
+	price
+	stock
