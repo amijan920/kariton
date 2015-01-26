@@ -19,23 +19,23 @@ Item
 Models/Tables
 
 User
-	name (string)
-	active_cart (integer)
+	active_cart:cart
 
 Cart
 	# cartID
-	userID (integer)
-	checkout_date (date_time)
+	user:references
+	total:decimal
+	checkout_date:date_time
 
 CartItem
-	itemID (integer)
-	cartID (integer)
-	quantity (integer)
-	price (decimal)
+	item:references
+	cart:references
+	quantity:integer
+	price:decimal
 
 Item
 	#itemID
-	description (text)
-	name (string)
-	price (decimal)
-	stock (integer)
+	description:text
+	name:string
+	price:decimal
+	stock:integer
