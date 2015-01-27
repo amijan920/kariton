@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # devise_scope :user do
   #   root to: "users/sessions#new"
   # end
-  root 'home#index'
+  root :to => 'home#index'
   devise_for :users, controllers: { sessions: "users/sessions" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

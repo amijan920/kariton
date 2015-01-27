@@ -1,8 +1,23 @@
-<h2>Welcome</h2>
+<h2>Browse our Items</h2>
+<div id="owl-demo" class="owl-carousel owl-theme">
+
 <% @users.each do |i_user| %>
-	<h5>
-		<%= i_user.name %>
-	</h5>
-	<p><%= i_user.description %></p>
-	<p><%= i_user.price %></p>
+	<div class="item">
+		<% if i_user.image.nil? %>
+  		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
+		<% else %>
+			<img src="<%= image_path(i_user.image) %>" class="img-responsive" alt="Responsive image">
+		<% end %>
+		<h4><%= i_user.name %></h4>
+	</div>
+	<div class="item">
+		<% if i_user.image.nil? %>
+  		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
+		<% else %>
+			<img src="<%= image_path(i_user.image) %>" class="img-responsive" alt="Responsive image">
+		<% end %>
+		
+		<h4><%= i_user.name %></h4>
+	</div>
 <% end %> 
+</div>

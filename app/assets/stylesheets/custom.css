@@ -1,8 +1,14 @@
-/*html {
-}*/
+html {
+  /*background: url('background.jpg') no-repeat center center fixed; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 body {
   font-family: 'Cabin Condensed', sans-serif;
+  background:none;
   /*background-image: url('/assets/bg1.png'); */
 }
 
@@ -14,25 +20,19 @@ a:hover {
 }
 
 #home-logo {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   /*background: #73563D;*/
   margin-left:auto;
   margin-right:auto;
   margin-bottom:16px;
+  margin-top:48px;
 }
 
 #content {
   padding-top:70px;
-  background: #ffffff;
+  /*background: #ffffff;*/
   /*background:rgba(255, 255, 255, .9);*/
-}
-
-#sign-up-block{
-  width:250px;
-/*  margin-left: auto;
-  margin-right: auto;*/
-  margin-bottom: 8px;
 }
 
 #sign-in-modal {
@@ -41,9 +41,32 @@ a:hover {
   margin-left:auto;
   margin-right:auto;
 }
+
 #sign-in-modal .modal-body {
   padding:20px;
   background: #FAFAFA;
+}
+
+#owl-demo .item{
+    background: #256E62;
+    height:300px;
+    padding: 10px 10px;
+    margin: 5px;
+    color: #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+#owl-demo .item img{
+    
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border: solid 2px white;
 }
 
 .authentication-block {
@@ -88,13 +111,13 @@ a:hover {
 
 .kariton-btn {
   color: #FFFFFF;
-  background: #73563D;
+  background: #256E62;
   border-radius: 3px;
-  border-bottom: solid 2px #59432F;
+  border-bottom: solid 2px #1F5B50;
   transition: background ease .5s;
 }
 
 .kariton-btn:hover {
   color: #FFFFFF;
-  background: #5D4733;
+  background: #357E72;
 }
