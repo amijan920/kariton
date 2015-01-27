@@ -2,6 +2,6 @@ class HomeController < ApplicationController
 	#before_action :authenticate_user!
 	
 	def index
-		@users = Item.all();
+		@items_list = Item.all();
 	end
 end

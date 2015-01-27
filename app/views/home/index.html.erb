@@ -1,23 +1,34 @@
 <h2>Browse our Items</h2>
-<div id="owl-demo" class="owl-carousel owl-theme">
+<div id="item-show">
+	</div>
+<div id="item-carousel" class="owl-carousel owl-theme">
 
-<% @users.each do |i_user| %>
+<% @items_list.each do |i_item| %>
 	<div class="item">
-		<% if i_user.image.nil? %>
+		<% if i_item.image.nil? %>
   		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
 		<% else %>
-			<img src="<%= image_path(i_user.image) %>" class="img-responsive" alt="Responsive image">
+			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
 		<% end %>
-		<h4><%= i_user.name %></h4>
+		<h6><%= i_item.name %></h6>
 	</div>
 	<div class="item">
-		<% if i_user.image.nil? %>
+		<% if i_item.image.nil? %>
   		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
 		<% else %>
-			<img src="<%= image_path(i_user.image) %>" class="img-responsive" alt="Responsive image">
+			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
 		<% end %>
 		
-		<h4><%= i_user.name %></h4>
+		<h6><%= i_item.name %></h6>
+	</div>
+	<div class="item">
+		<% if i_item.image.nil? %>
+  		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
+		<% else %>
+			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
+		<% end %>
+		
+		<h6><%= i_item.name %></h6>
 	</div>
 <% end %> 
 </div>

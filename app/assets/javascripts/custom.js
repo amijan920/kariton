@@ -1,6 +1,5 @@
-$(document).ready(function() {
- 
-  var owl = $("#owl-demo");
+var ready = function() {
+  var owl = $("#item-carousel");
  
   owl.owlCarousel({
      
@@ -10,12 +9,16 @@ $(document).ready(function() {
         [600, 3],
         [700, 4],
         [1000, 5],
-        [1200, 6],
-        [1400, 7],
-        [1600, 8]
+        [1200, 9],
+        [1400, 10],
+        [1600, 12]
       ],
       navigation : true
  
   });
  
-});
+}
+
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
