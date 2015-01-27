@@ -44,3 +44,13 @@ CartItem
 	cart:references
 	quantity:integer
 	price:decimal
+
+INSERT INTO item (name, description, price, quantity)
+VALUES ("Bamboo Money Box", "A money box made exquisitely of bamboo perfect for saving money.", 300, 54);
+
+INSERT INTO Item
+VALUES()
+
+Item.create(name: "Bamboo Money Box", description: "A money box made exquisitely of bamboo perfect for saving money.", price:300.00, stock:54)
+
+Item.create(name: "Abaca Slippers", description: "Slippers made of pure Abaca. Designed by our world famous designer, Juliana Santada.", price:498.00, stock:102)

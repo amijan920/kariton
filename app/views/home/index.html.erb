@@ -1,1 +1,8 @@
 <h2>Welcome</h2>
+<% @users.each do |i_user| %>
+	<h5>
+		<%= i_user.name %>
+	</h5>
+	<p><%= i_user.description %></p>
+	<p><%= i_user.price %></p>
+<% end %> 
