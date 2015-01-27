@@ -1,24 +1,37 @@
 html {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto';
 }
 
 body {
   /*background-image: url('/assets/bg1.png'); */
 }
 
+#wrapper { 
+}
+
 a:hover {
   cursor:pointer;
 }
 
+#home-logo {
+  width: 250px;
+  height: 250px;
+  background: #73563D;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:16px;
+}
+
 #content {
-  margin-top:70px;
+  padding-top:70px;
+  background: #ffffff;
   /*background:rgba(255, 255, 255, .9);*/
 }
 
 #sign-up-block{
-  width:250px;
+  /*width:250px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;*/
   margin-bottom: 8px;
 }
 
@@ -52,7 +65,13 @@ a:hover {
 
 .kariton-btn {
   color: #FFFFFF;
-  background: #917e66;
+  background: #73563D;
   border-radius: 3px;
-  border-bottom: solid 2px #806D55;
+  border-bottom: solid 2px #59432F;
+  transition: background ease .5s;
+}
+
+.kariton-btn:hover {
+  color: #FFFFFF;
+  background: #5D4733;
 }

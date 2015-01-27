@@ -11,21 +11,27 @@
    
    <%= render 'layouts/navigation' %>
 
-  <div id="content" class="container">
-		<% if notice %>
-		  <div class="alert alert-success alert-dismissible">
-		  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  	<%= notice %>
-		 	</div>
-		<% end %>
-		<% if alert %>
-		  <div class="alert alert-danger alert-dismissible">
-		  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  	<%= alert %>
-		  </div>
-		<% end %>
+  <div id="content" class="container-fluid">
+  	<div class="row">
+  		<div id="wrapper" class="col-md-offset-2 col-md-8">
+  			<!--
+				<% if notice %>
+				  <div class="alert alert-success alert-dismissible">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<%= notice %>
+				 	</div>
+				<% end %>
+				<% if alert %>
+				  <div class="alert alert-danger alert-dismissible">
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  	<%= alert %>
+				  </div>
+				<% end %>
+			-->
 
-		<%= yield %>
+				<%= yield %>
+			</div>
+		</div>
 	</div>
 
 </body>
