@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Item.create(name: "Bamboo Money Box", description: "A money box made exquisitely of bamboo perfect for saving money.", price:300.00, stock:54, image:"items/bamboo-money-box.png")
+Item.create(name: "Bamboo Money Box", description: "A money box made exquisitely of bamboo perfect for saving money.", price:300.00, stock:54, image:"items/bamboo-money-box.jpg")
 
 Item.create(name: "Abaca Slippers", description: "Slippers made of pure Abaca. Designed by our world famous designer, Juliana Santada.", price:498.00, stock:102, image:"items/abaca.jpg")
 
