@@ -1,7 +1,6 @@
 
-<div id="sign-up-block" class="col-sm-offset-4 col-sm-4">
-  <div id="home-logo" class="" >
-  </div>
+<div id="sign-up-block" class="authentication-block">
+  <%= render 'layouts/logo_250' %>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <div class="field form-group">
@@ -26,7 +25,7 @@
   <% end %>
 </div>
 
-<div class="col-sm-offset-4 col-sm-4">
+<div class="authentication-block">
   <p align="center">or <a data-toggle="modal" data-target="#myModal">Sign In</a></p>
 </div>
 <!-- modal -->

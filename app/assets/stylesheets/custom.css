@@ -1,8 +1,8 @@
-html {
-  font-family: 'Roboto';
-}
+/*html {
+}*/
 
 body {
+  font-family: 'Cabin Condensed', sans-serif;
   /*background-image: url('/assets/bg1.png'); */
 }
 
@@ -16,7 +16,7 @@ a:hover {
 #home-logo {
   width: 250px;
   height: 250px;
-  background: #73563D;
+  /*background: #73563D;*/
   margin-left:auto;
   margin-right:auto;
   margin-bottom:16px;
@@ -29,12 +29,24 @@ a:hover {
 }
 
 #sign-up-block{
-  /*width:250px;
-  margin-left: auto;
+  width:250px;
+/*  margin-left: auto;
   margin-right: auto;*/
   margin-bottom: 8px;
 }
 
+.authentication-block {
+  width:250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+}
+
+#sign-up-block h4{
+  font-family: 'Cabin Condensed', sans-serif;
+  font-size: 1.5em;
+  color: #59432F;
+}
 
 .dropdown-menu:before {
   position: absolute;

@@ -3,18 +3,17 @@
 <head>
   <title>Kariton - Your Online Filipino Store</title>
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
    
-   <%= render 'layouts/navigation' %>
+  <%= render 'layouts/navigation' %>
 
   <div id="content" class="container-fluid">
-  	<div class="row">
-  		<div id="wrapper" class="col-md-offset-2 col-md-8">
-  			<!--
+  		<!--
 				<% if notice %>
 				  <div class="alert alert-success alert-dismissible">
 				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -28,10 +27,7 @@
 				  </div>
 				<% end %>
 			-->
-
-				<%= yield %>
-			</div>
-		</div>
+			<%= yield %>
 	</div>
 
 </body>
