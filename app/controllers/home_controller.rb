@@ -24,7 +24,7 @@ class HomeController < ApplicationController
 		@key ="Amiel2"
 		if current_user.Cart_id.nil?
 			@cart = Cart.create(User_id: current_user.id, total: 0)
-			current_user.update(Cart_id: cart.id)
+			current_user.update(Cart_id: @cart.id)
 		else
 			@cart = Cart.find(current_user.Cart_id)
 		end
