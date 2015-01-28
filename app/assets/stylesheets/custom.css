@@ -73,6 +73,10 @@ a:hover {
     text-align: center;
 }
 
+#item-carousel .item2{
+    background: #896F4A;
+}
+
 #item-carousel .item img{
     
     -webkit-border-radius: 3px;
@@ -84,7 +88,7 @@ a:hover {
 }
 
 .authentication-block {
-  width:250px;
+  width:280px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 8px;
@@ -127,6 +131,7 @@ a:hover {
   color: #FFFFFF;
   background: #256E62;
   border-radius: 3px;
+  border:none;
   border-bottom: solid 2px #1F5B50;
   transition: background ease .5s;
 }

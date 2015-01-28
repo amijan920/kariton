@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   #   root to: "users/sessions#new"
   # end
   root :to => 'home#index'
+  post 'additemtocart' => 'home#addItemToCart'
   devise_for :users, controllers: { sessions: "users/sessions" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

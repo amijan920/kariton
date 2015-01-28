@@ -1,18 +1,29 @@
 <h2>Browse our Items</h2>
 <div id="item-show">
-	</div>
+</div>
+
+<script>
+	itemList = <%= raw @items_list.to_json %>
+	getItems();
+</script>
+
 <div id="item-carousel" class="owl-carousel owl-theme">
 
-<% @items_list.each do |i_item| %>
-	<div class="item">
+<% @items_list.each_with_index do |i_item, index| %>
+	<div class="item" data-index=<%= index %>>
 		<% if i_item.image.nil? %>
   		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
 		<% else %>
 			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
 		<% end %>
 		<h6><%= i_item.name %></h6>
+		<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
+			<%= hidden_field_tag(:itemId, i_item.id) %>
+			<%= hidden_field_tag(:itemQuantity, 1) %>
+			<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn"%> 
+		<% end %>
 	</div>
-	<div class="item">
+	<div class="item item2" data-index=<%= index %>>
 		<% if i_item.image.nil? %>
   		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
 		<% else %>
@@ -20,15 +31,11 @@
 		<% end %>
 		
 		<h6><%= i_item.name %></h6>
-	</div>
-	<div class="item">
-		<% if i_item.image.nil? %>
-  		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
-		<% else %>
-			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
+		<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
+			<%= hidden_field_tag(:itemId, i_item.id) %>
+			<%= hidden_field_tag(:itemQuantity, 1) %>
+			<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn"%> 
 		<% end %>
-		
-		<h6><%= i_item.name %></h6>
 	</div>
 <% end %> 
 </div>

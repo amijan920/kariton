@@ -58,3 +58,6 @@ Item.create(name: "Abaca Slippers", description: "Slippers made of pure Abaca. D
 Item.create(name: "Narra Table", description: "A designer table made from one of the strongest wood in the Philippines, the Narra. Burnished and topped with tampered glass.", price:23000, stock:13, image:"items/narra-table.jpg")
 
 Item.create(name: "Bamboo Chair", description: "A chair made of bamboo. It's just the right item to make any house look native.", price:2499, stock:43, image:"items/bamboo-chair.png")
+
+
+Item.create(name: "Coconut Shell Lamp", description: "A hanging lamp made with two coconut shells and sea shells.", price:1479, stock:67)

@@ -4,5 +4,5 @@
   <!--li><%#= link_to 'Sign up', new_user_registration_path %></li-->
 <% end %>
 <% if user_signed_in? %>
-  <li><a>View Cart</a></li>
+  <li><a>View Cart (<%= @cart_items.length %>)</a></li>
 <% end %>
