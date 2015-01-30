@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require isotope.pkgd.min
 //= require owl.carousel.min
 //= require turbolinks
 //= require_tree .

@@ -1,41 +1,45 @@
 <h2>Browse our Items</h2>
-<div id="item-show">
-</div>
 
 <script>
 	itemList = <%= raw @items_list.to_json %>
-	getItems();
 </script>
 
-<div id="item-carousel" class="owl-carousel owl-theme">
+<div id="item-view">
+	<% @items_list.each_with_index do |i_item, index| %>
 
-<% @items_list.each_with_index do |i_item, index| %>
-	<div class="item" data-index=<%= index %>>
-		<% if i_item.image.nil? %>
-  		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
+		<% q_inCart = inCart?(i_item.id)
+			if inCart?(i_item.id) > 0 %>
+			<div class="item-tile in-cart" data-index=<%= index %>, data-toggled=0>
+			<div class="in-cart-number">
+				<%= q_inCart %>
+			</div>
+		<% elsif i_item.stock > 0 %>
+			<div class="item-tile" data-index=<%= index %>, data-toggled=0>
 		<% else %>
-			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
+			<div class="item-tile out-of-stock" data-index=<%= index %>, data-toggled=0>
+					<div class="out-of-stock-banner">
+						Out of stock
+					</div>
 		<% end %>
-		<h6><%= i_item.name %></h6>
-		<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
-			<%= hidden_field_tag(:itemId, i_item.id) %>
-			<%= hidden_field_tag(:itemQuantity, 1) %>
-			<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn"%> 
-		<% end %>
-	</div>
-	<div class="item item2" data-index=<%= index %>>
-		<% if i_item.image.nil? %>
-  		<img src="<%= image_path('default.png') %>" class="img-responsive" alt="Responsive image">
-		<% else %>
-			<img src="<%= image_path(i_item.image) %>" class="img-responsive" alt="Responsive image">
-		<% end %>
-		
-		<h6><%= i_item.name %></h6>
-		<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
-			<%= hidden_field_tag(:itemId, i_item.id) %>
-			<%= hidden_field_tag(:itemQuantity, 1) %>
-			<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn"%> 
-		<% end %>
-	</div>
-<% end %> 
+
+				<% if i_item.image.nil? %>
+		  		<img src="<%= image_path('default.png') %>" class="img-responsive" >
+				<% else %>
+					<img src="<%= image_path(i_item.image) %>" class="img-responsive" >
+				<% end %>
+				<div class="item-name"><%= i_item.name %></div>
+				<div class="expanded-info">
+					<div class="description">
+							<%= i_item.description %>
+					</div>
+				</div>
+
+			<!--<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
+					<%= hidden_field_tag(:itemId, i_item.id) %>
+					<%= hidden_field_tag(:itemQuantity, 1) %>
+					<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn"%> 
+				<% end %>-->
+
+		</div>
+	<% end %> 
 </div>
