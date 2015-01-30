@@ -44,6 +44,7 @@ a:hover {
   padding: 10px 10px;
   color: #FFFFFF;
   margin:4px;
+  margin-bottom:8px;
 
   overflow: visible !important;
 
@@ -62,6 +63,13 @@ a:hover {
 
 #item-view .item-tile.out-of-stock{
   background: #888888;
+}
+
+#item-view .item-tile.out-of-stock img{
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(100%);
+  z-index: 0;
 }
 
 #item-view .item-tile.out-of-stock:hover{
@@ -105,6 +113,7 @@ a:hover {
   text-align: center;
   font-size: 1.4em;
   font-weight: 700;
+  z-index:1;
 }
 
 #item-view .item-tile .in-cart-number{
@@ -123,6 +132,14 @@ a:hover {
 
 #item-view .item-tile:hover .in-cart-number{
   background: #357E72;
+}
+
+#item-view .item-tile .kariton-btn{
+  width:100%;
+}
+
+#item-filter {
+  margin-bottom:8px;
 }
 
 .authentication-block {
@@ -170,6 +187,8 @@ a:hover {
 }
 
 .kariton-btn {
+  margin-top:8px;
+  padding:4px;
   color: #FFFFFF;
   background: #256E62;
   border-radius: 3px;
@@ -178,7 +197,14 @@ a:hover {
   transition: background ease .5s;
 }
 
+
 .kariton-btn:hover {
   color: #FFFFFF;
   background: #357E72;
+}
+
+.kariton-btn:disabled {
+  color: #888888;
+  background-color: #BBBBBB;
+  border-bottom: solid 2px #AAAAAA;
 }

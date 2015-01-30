@@ -13,6 +13,7 @@ class HomeController < ApplicationController
 		loadUserResources
 		Cart.addItem(@cart.id, params[:itemId], params[:itemQuantity].to_i)
 		
+		loadUserCart
 		loadCommonResources
 		render :index
 	end
@@ -21,6 +22,7 @@ class HomeController < ApplicationController
 		loadUserResources
 		Cart.removeItem(@cart.id, params[:cartItemId])
 
+		loadUserCart
 		loadCommonResources
 		render :index
 	end
@@ -28,8 +30,8 @@ class HomeController < ApplicationController
 	def checkoutCart
 		loadUserResources
 		checkout(@cart.id)
+		
 		loadUserCart
-
 		loadCommonResources
 		render :index
 	end
