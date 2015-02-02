@@ -52,7 +52,7 @@ class HomeController < ApplicationController
 	private
 
 	def loadCommonResources
-		@items_list = Item.all();
+		@items_list = Item.order('id').all;
 	end
 
 	def loadUserResources
