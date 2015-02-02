@@ -1,11 +1,20 @@
-<h2>Browse our Items</h2>
+<h2 style="margin-top:0px">Browse Items</h2>
 <!-- <div id="search-bar">
 	<div class="search-label">
 		Browse our Items
 	</div> -->
-	<div>
-		<input id="item-filter" type="text" placeholder="Filter Items"/>
+<div id="item-tools">
+	<div style="float:left">
+		<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
 	</div>
+	<span style="float:right">
+		<ul>
+			<li><a id="view-cart-tool" class="tool">View Cart</a></li>
+			<li><a id="show-all-tool" class="tool active">Show All Items</a></li>
+			<!-- <li><a id="hide-out-tool" class="tool">Hide Out of Stock</a></li> -->
+		</ul>
+	</span>
+</div>
 <!-- </div> -->
 
 <script>
@@ -18,39 +27,70 @@
 		<% if user_signed_in? && inCart?(i_item.id) > 0
 			q_inCart = inCart?(i_item.id) %>
 			<div class="item-tile in-cart" data-index=<%= index %>, data-toggled=0>
-			<div class="in-cart-number">
-				<%= q_inCart %>
-			</div>
+		<!-- 	<div class="in-cart-number">
+				<%= q_inCart %> in cart
+			</div> -->
 		<% elsif i_item.stock > 0 %>
 			<div class="item-tile" data-index=<%= index %>, data-toggled=0>
 		<% else %>
 			<div class="item-tile out-of-stock" data-index=<%= index %>, data-toggled=0>
-					<div class="out-of-stock-banner">
-						Out of stock
-					</div>
+			<div class="out-of-stock-banner">
+				Out of stock
+			</div>
 		<% end %>
-
-				<% if i_item.image.nil? %>
-		  		<img src="<%= image_path('default.png') %>" class="img-responsive" >
-				<% else %>
-					<img src="<%= image_path(i_item.image) %>" class="img-responsive" >
-				<% end %>
+				<div class="item-image">
+					<% if i_item.image.nil? %>
+			  		<img src="<%= image_path('default.png') %>" class="img-responsive" >
+					<% else %>
+						<img src="<%= image_path(i_item.image) %>" class="img-responsive" >
+					<% end %>
+				</div>
 				<div class="item-name"><%= i_item.name %></div>
+				<div class="price-tag">
+							P<%= number_with_precision(i_item.price, :precision => 2, :delimiter => ',') %>
+				</div>
 				<div class="expanded-info">
+					<div class="description">
+							<%= i_item.description %>
+					</div>
+					<div class="stock-count">
+						<% if i_item.stock == 0%>
+							Out of stock
+						<% else %>
+							<strong><%= i_item.stock %></strong> in stock
+						<% end %>
+					</div>
+					<% if user_signed_in? && inCart?(i_item.id) > 0
+						q_inCart = inCart?(i_item.id) %>
+						<!-- <div class="item-tile in-cart" data-index=<%= index %>, data-toggled=0> -->
+						<div class="in-cart-count">
+							You have <strong><%= q_inCart %></strong> in cart
+						</div>
+					<% end %>
+
 					<div class="form">
 						<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
 							<%= hidden_field_tag(:itemId, i_item.id) %>
 							<%= hidden_field_tag(:itemQuantity, 1) %>
-							<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
+							<% if user_signed_in? && inCart?(i_item.id) > 0 %>
+								<%= submit_tag "Add More To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
+							<% elsif %>
+								<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
+							<%end %>
 						<% end %>
 					</div>
-					<div class="description">
-							<%= i_item.description %>
-					</div>
-
-
 				</div>
-
 		</div>
 	<% end %> 
 </div>
+
+<% if user_signed_in? %>
+	<div id="cart-view">
+		<div id="cart-check-out">
+			Check out Cart
+		</div>
+		<div id="cart-total">
+			Cart Total: P<%= number_with_precision(@cart.total, :precision => 2, :delimiter => ',') %>
+		</div>
+	</div>
+<% end %>

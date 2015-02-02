@@ -6,6 +6,8 @@ class Cart < ActiveRecord::Base
 	  	c_item = Item.find(item_id)
 	  	c_cart = Cart.find(cart_id)
 
+	  	c_cart_item = CartItem.where(Cart_id: cart_id, Item_id: item_id)
+
 			total = c_item.price * quantity
 			cartItem = CartItem.create(Cart_id: c_cart.id, Item_id: c_item.id, quantity: quantity, price: total)
 	  	total = total + c_cart.total
