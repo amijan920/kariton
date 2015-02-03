@@ -41,6 +41,8 @@ var toggleTile = function(tile) {
 }
 
 var onTileClick = function (e) {
+  if($(e.target).hasClass("kariton-btn") || $(e.target).hasClass("item-quantity"))
+    return;
   toggleTile($(this))
 }
 
@@ -62,6 +64,8 @@ var onViewCartClick = function(e) {
   cartFilter = true;
   $("#show-all-tool").removeClass("active");
   $("#view-cart-tool").addClass("active");
+  $("#item-view").addClass("cart-item-view");
+  $("#cart-view").slideDown();
   filter();
 }
 
@@ -69,6 +73,8 @@ var onViewItemsClick = function(e) {
   cartFilter = false;
   $("#view-cart-tool").removeClass("active");
   $("#show-all-tool").addClass("active");
+  $("#item-view").removeClass("cart-item-view");
+  $("#cart-view").slideUp();
   filter();
 }
 

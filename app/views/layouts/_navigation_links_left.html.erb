@@ -4,5 +4,5 @@
 <% end %>
 <% if user_signed_in? %>
   <li><a id="view-items">Order History</a><!-- <a id="view-cart">View Cart (<%= @cart_items.length %>)</a> --></li>
-  <li><!-- <a id="view-items">View All Items</a> --></li>
+  <li><%= link_to 'Browse Items', root_url, id: 'view-items' %></li>
 <% end %>

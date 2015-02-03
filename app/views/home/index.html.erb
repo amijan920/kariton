@@ -1,19 +1,29 @@
+<% if @tester.nil? %>
+			<%=@tester%>
+			<%end%>
+
 <h2 style="margin-top:0px">Browse Items</h2>
 <!-- <div id="search-bar">
 	<div class="search-label">
 		Browse our Items
 	</div> -->
-<div id="item-tools">
-	<div style="float:left">
-		<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+<div class= "row">
+	<div class="col-md-12">
+	<div id="item-tools">
+		<div style="float:left">
+			<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+		</div>
+		<% if user_signed_in? %>
+			<span style="float:right">
+				<ul>
+					<li><a id="view-cart-tool" class="tool">View Cart (<%= @cart_quantity %>)</a></li>
+					<li><a id="show-all-tool" class="tool active right">Show All Items</a></li>
+					<!-- <li><a id="hide-out-tool" class="tool">Hide Out of Stock</a></li> -->
+				</ul>
+			</span>
+		<% end %>
 	</div>
-	<span style="float:right">
-		<ul>
-			<li><a id="view-cart-tool" class="tool">View Cart</a></li>
-			<li><a id="show-all-tool" class="tool active">Show All Items</a></li>
-			<!-- <li><a id="hide-out-tool" class="tool">Hide Out of Stock</a></li> -->
-		</ul>
-	</span>
+	</div>
 </div>
 <!-- </div> -->
 
@@ -69,9 +79,11 @@
 					<% end %>
 
 					<div class="form">
-						<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do %>
+						<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do |f| %>
 							<%= hidden_field_tag(:itemId, i_item.id) %>
-							<%= hidden_field_tag(:itemQuantity, 1) %>
+							<% if i_item.stock > 0 %>
+								<%= number_field(:item, :quantity, :value => 0, in: 0..i_item.stock, step: 1, :class => "item-quantity") %>
+							<% end %>
 							<% if user_signed_in? && inCart?(i_item.id) > 0 %>
 								<%= submit_tag "Add More To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
 							<% elsif %>
@@ -86,11 +98,23 @@
 
 <% if user_signed_in? %>
 	<div id="cart-view">
-		<div id="cart-check-out">
-			Check out Cart
-		</div>
+		<%= form_tag url_for(:controller => "home", :action => "clearCart"), :method => "post" do %>
+			<%= hidden_field_tag(:cart_id, @cart.id) %>
+			<%= button_tag "", :id => "cart-clear", :class => "gray-button", :disabled => (@cart_quantity == 0) do%>
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			<% end %> 
+		<% end %>
+
+		<%= form_tag url_for(:controller => "home", :action => "checkoutCart"), :method => "post" do %>
+			<%= button_tag "", :id => "cart-check-out", :class => "gray-button", :disabled => (@cart_quantity == 0) do%>
+				Check out Cart
+			<% end %> 
+		<% end %>
+
 		<div id="cart-total">
 			Cart Total: P<%= number_with_precision(@cart.total, :precision => 2, :delimiter => ',') %>
 		</div>
 	</div>
 <% end %>
+
+<div class="filler"></div>

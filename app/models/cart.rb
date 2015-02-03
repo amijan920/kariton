@@ -3,16 +3,33 @@ class Cart < ActiveRecord::Base
 
   class << self # Class methods
     def addItem (cart_id, item_id, quantity)
+    	if quantity == 0
+    		return
+    	end
+
 	  	c_item = Item.find(item_id)
+
+	  	if quantity > c_item.quantity
+	  		quantity = c_item.quantity
+	  	end
+
 	  	c_cart = Cart.find(cart_id)
 
-	  	c_cart_item = CartItem.where(Cart_id: cart_id, Item_id: item_id)
+	  	c_cart_item = CartItem.where(Cart_id: cart_id, Item_id: item_id).first
+	  	
+	  	total = c_item.price * quantity
+	  	
+	  	if c_cart_item.nil?
+				cartItem = CartItem.create(Cart_id: c_cart.id, Item_id: c_item.id, quantity: quantity, price: total)
+		  else
+		  	c_cart_item.quantity
+		  	c_cart_item.update(quantity: c_cart_item.quantity + quantity, price: c_cart_item.price + total)
+		  end
 
-			total = c_item.price * quantity
-			cartItem = CartItem.create(Cart_id: c_cart.id, Item_id: c_item.id, quantity: quantity, price: total)
-	  	total = total + c_cart.total
+		  total = total + c_cart.total
 	  	c_cart.update(total: total)
 	  	c_item.update(stock: (c_item.stock - quantity))
+			
 	  end
 
 	  def removeItem (cart_id, cart_item_id)
@@ -24,6 +41,14 @@ class Cart < ActiveRecord::Base
 	  	c_cart.update(total: total)
 	  	c_item.update(stock: (c_item.stock + c_cart_item.quantity))
 	  	c_cart_item.destroy()
+	  end
+
+	  def clearCart (cart_id)
+	  	cart_items = CartItem.where(Cart_id: cart_id)
+
+	  	cart_items.each do |cart_item|
+	  		removeItem(cart_id, cart_item.id)
+	  	end
 	  end
 
 	  def getItems (cart_id)

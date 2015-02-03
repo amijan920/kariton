@@ -11,8 +11,9 @@ class HomeController < ApplicationController
 
 	def addItemToCart
 		loadUserResources
-		Cart.addItem(@cart.id, params[:itemId], params[:itemQuantity].to_i)
+		Cart.addItem(@cart.id, params[:itemId], params[:item][:quantity].to_i)
 		
+		@tester = params[:item_quantity].to_i;
 		loadUserCart
 		loadCommonResources
 		render :index
@@ -27,9 +28,20 @@ class HomeController < ApplicationController
 		render :index
 	end
 
+	def clearCart
+		loadUserResources
+		Cart.clearCart(@cart.id)
+
+		loadUserCart
+		loadCommonResources
+		render :index
+	end
+
 	def checkoutCart
 		loadUserResources
-		checkout(@cart.id)
+		Cart.checkout(@cart.id)
+
+		current_user.reload()
 		
 		loadUserCart
 		loadCommonResources
