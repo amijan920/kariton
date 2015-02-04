@@ -1,0 +1,77 @@
+<div class= "row">
+	<div class="col-md-12">
+		<div id="item-tools">
+			<div style="float:left">
+				<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+			</div>
+			<span style="float:right">
+				<select id="date-filter" place-holder="Filter by date">
+						<option value="-1">
+							Show all
+						</option>
+						<% dates = Array.new(@cart_history[0].length) %>
+						<% @cart_history[0].each_with_index do |cart, i|%>
+							<option value="<%=i%>">
+								<%= cart.checkout_date.strftime("%B %-d, %Y %l:%M %P") %>
+								<% dates[i] = cart.checkout_date.strftime("%B %-d, %Y %l:%M %P") %>
+							</option>
+						<%end%>
+				</select>
+			</span>
+		</div>
+	</div>
+</div>
+
+<script>
+	overall = <%= @cart_history[2] %>
+	cart_history = <%= raw @cart_history[0].to_json %>
+	dates = <%= raw dates.to_json %>
+</script>
+
+<div id="item-view">
+	<% @cart_history[1].each_with_index do |cart, i| %>
+		<% cart.each do |cart_item| %>
+			<% i_item = getItem(cart_item.Item_id) %>
+			<div class="item-tile in-cart" data-toggled=0 data-date="<%= @cart_history[0][i].checkout_date.strftime("%B %-d, %Y %l:%M %P") %>">
+			<div class="item-image">
+				<% if i_item.image.nil? %>
+		  		<img src="<%= image_path('default.png') %>" class="img-responsive" >
+				<% else %>
+					<img src="<%= image_path(i_item.image) %>" class="img-responsive" >
+				<% end %>
+			</div>
+				<div class="item-name"><%= i_item.name %></div>
+				<div class="price-tag">
+							P<%= number_with_precision(i_item.price, :precision => 2, :delimiter => ',') %>
+				</div>
+				<div class="expanded-info-history">
+					<div class="description">
+							<%= i_item.description %>
+					</div>
+					<!-- <div class="stock-count">
+						<% if i_item.stock == 0%>
+							Out of stock
+						<% else %>
+							<strong><%= i_item.stock %></strong> in stock
+						<% end %>
+					</div> -->
+					<div class="in-cart-count">
+						You have ordered <strong><%= cart_item.quantity %></strong>
+					</div>
+
+				</div>
+			</div>
+		<% end %>
+	<% end %> 
+</div>
+
+<div id="history-view">
+	<div id="cart-total">
+		Overall Total: <%= number_with_precision(@cart_history[2], :precision => 2, :delimiter => ',')  %>
+	</div>
+</div>
+
+
+
+
+<div class="filler"></div>

@@ -1,0 +1,175 @@
+<div>
+	<h2>Review Cart</h2>
+</div>
+
+<div>
+	<h4>Items in Cart</h2>
+</div>
+<div class="row" style="margin-top:16px">
+	<div class="col-md-12">
+		<table class="table">
+			<tr>					
+				<th>Item</th>
+				<th>Description</th>
+				<th align="right" style="text-align:right">Quantity</th>
+				<th align="right" style="text-align:right">Subtotal</th>
+			</tr>
+			<% @cart_items.each_with_index do |cart_item, i| %>
+				<tr>
+					<td>
+						<%= @cart_items_spec[i].name %>
+					</td>
+					<td>
+						<%= @cart_items_spec[i].description %>
+					</td>
+					</td>
+					<td align="right">
+						<%= cart_item.quantity %>
+					</td>
+					<td align="right">
+						<%= number_with_precision(cart_item.price, :precision => 2, :delimiter => ',') %>
+					</td>
+				</tr>	
+			<% end %>
+		</table>
+	</div>
+</div>
+
+<div class="in-betweener"></div>
+
+<div>
+	<h4>Billing information</h2>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<form class="form-horizontal">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="first-name" class="col-md-3 col-sm-3 control-label">First Name</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="first-name" placeholder="First Name">
+				    </div>
+					</div>
+					<div class="form-group">
+						<label for="last-name" class="col-md-3 col-sm-3 control-label">Last Name</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+				    </div>
+					</div>
+					<div class="form-group">
+						<label for="company" class="col-md-3 col-sm-3 control-label">Company</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="company" placeholder="Company">
+				    </div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="email" class="col-md-3 col-sm-3 control-label">Email</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="email" class="form-control" id="email" placeholder="Email">
+				    </div>
+					</div>
+					<div class="form-group">
+						<label for="phone" class="col-md-3 col-sm-3 control-label">Phone</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+				    </div>
+					</div>
+				</div>
+			</div>
+			<div class="in-betweener2"></div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="address1" class="col-md-3 col-sm-3 control-label">Address</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="address1" placeholder="Address">
+				    </div>
+					</div>
+					<div class="form-group">
+						<label for="city" class="col-md-3 col-sm-3 control-label">City</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="city" placeholder="City">
+				    </div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="postal" class="col-md-3 col-sm-3 control-label">Postal/ZIP Code</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="postal" placeholder="Postal/ZIP Code">
+				    </div>
+					</div>
+					<div class="form-group">
+						<label for="country" class="col-md-3 col-sm-3 control-label">Country</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="postal" placeholder="Country">
+				    </div>
+					</div>
+				</div>
+			</div>
+			<div class="in-betweener2"></div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="credit-number" class="col-md-3 col-sm-3 control-label">Credit Card #</label>
+						<div class="col-md-9 col-sm-9">
+				      <input type="text" class="form-control" id="credit" placeholder="Credit Card Number">
+				    </div>
+					</div>
+					<div class="form-group">
+						<label for="credit-number" class="col-md-3 col-sm-3 control-label">Card Type</label>
+						<div class="col-md-9 col-sm-9">
+							<select class="form-control">
+								<option>VISA</option>
+								<option>MasterCard</option>
+								<option>AMEX</option>
+							</select>
+							<!-- <div class="dropdown">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+							    Select Credit Card Type
+							    <span class="caret"></span>
+							  </button>
+							  
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">VISA</a></li>
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">MasterCard</a></li>
+								  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">AMEX</a></li>
+								</ul>
+							</div> -->
+				    </div>
+					</div>
+				</div>
+				<div class="col-md-6">
+
+				</div>
+			</div>
+		</form>
+
+			<div class="in-betweener"></div>
+	</div>
+</div>
+
+<div id="cart-view" style="display:block">
+	<%= form_tag url_for(:controller => "home", :action => "clearCart"), :method => "post" do %>
+		<%= hidden_field_tag(:cart_id, @cart.id) %>
+		<%= button_tag "", :id => "cart-clear", :class => "gray-button", :disabled => (@cart_quantity == 0) do%>
+			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+		<% end %> 
+	<% end %>
+
+	<%= form_tag url_for(:controller => "home", :action => "checkoutCart"), :method => "post" do %>
+		<%= button_tag "", :id => "cart-check-out", :class => "gray-button", :disabled => (@cart_quantity == 0) do%>
+			Check out Cart
+		<% end %> 
+	<% end %>
+
+	<div id="cart-total" style="float:left">
+		Cart Total: P<%= number_with_precision(@cart.total, :precision => 2, :delimiter => ',') %>
+	</div>
+</div>
+
+<div class="filler"></div>

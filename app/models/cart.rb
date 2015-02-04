@@ -9,8 +9,8 @@ class Cart < ActiveRecord::Base
 
 	  	c_item = Item.find(item_id)
 
-	  	if quantity > c_item.quantity
-	  		quantity = c_item.quantity
+	  	if quantity > c_item.stock
+	  		quantity = c_item.stock
 	  	end
 
 	  	c_cart = Cart.find(cart_id)
@@ -76,9 +76,16 @@ class Cart < ActiveRecord::Base
 
 	  def getHistory (user_id)
 	  	c_user = User.find(user_id)
-	  	cart_history = Cart.where(User_id: user_id).where.not(id: user.Cart_id)
+	  	cart_history = Cart.where(User_id: user_id).where.not(id: c_user.Cart_id)
 
-	  	return cart_history
+	  	cart_items = Array.new(cart_history.length)
+	  	total = 0
+	  	cart_history.each_with_index do |cart, i|
+	  		cart_items[i] = CartItem.where(Cart_id: cart.id)
+	  		total += cart.total
+	  	end
+
+	  	return cart_history, cart_items, total 
 	  end
   end
   

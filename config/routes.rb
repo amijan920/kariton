@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   #   root to: "users/sessions#new"
   # end
   root :to => 'home#index'
+  get 'cartHistory' => 'home#cartHistory'
+  post 'checkoutView' => 'home#checkoutView'
   post 'additemtocart' => 'home#addItemToCart'
   post 'clearcart' => 'home#clearCart'
   post 'checkout' => 'home#checkoutCart'
-  post 'removeitemfromcart' => 'home#removeitemfromcart'
+  post 'removeitemfromcart' => 'home#removeItemFromCart'
   devise_for :users, controllers: { sessions: "users/sessions" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

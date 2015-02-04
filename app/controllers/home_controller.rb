@@ -9,6 +9,14 @@ class HomeController < ApplicationController
 		end
 	end
 
+	def cartHistory
+		loadCommonResources
+		loadUserResources
+
+		@cart_hist = true
+		@cart_history = Cart.getHistory(current_user.id)
+	end
+
 	def addItemToCart
 		loadUserResources
 		Cart.addItem(@cart.id, params[:itemId], params[:item][:quantity].to_i)
@@ -37,6 +45,10 @@ class HomeController < ApplicationController
 		render :index
 	end
 
+	def checkoutView
+		loadUserResources
+	end
+
 	def checkoutCart
 		loadUserResources
 		Cart.checkout(@cart.id)
@@ -48,18 +60,24 @@ class HomeController < ApplicationController
 		render :index
 	end
 
+	def getItem(item_id)
+		return Item.find(item_id)
+	end
+
 	def inCart?(item_id) 
 		item_quantity = 0
+		cart_item_id = 0;
 		@cart_items.each do |i_item|
 			if i_item.Item_id == item_id
 				item_quantity += i_item.quantity
+				cart_item_id = i_item.id
+				break
 			end
 		end
-
-		item_quantity
+		return item_quantity, cart_item_id
 	end
 
-	helper_method :inCart?
+	helper_method :inCart?, :getItem
 
 	private
 

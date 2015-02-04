@@ -10,7 +10,11 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<% if user_signed_in? %>
+	<body class="logged-in">
+<% else %>
+	<body>
+<% end %>
    
   <%= render 'layouts/navigation' %>
 

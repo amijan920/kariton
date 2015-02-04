@@ -61,3 +61,16 @@ Item.create(name: "Bamboo Chair", description: "A chair made of bamboo. It's jus
 
 
 Item.create(name: "Coconut Shell Lamp", description: "A hanging lamp made with two coconut shells and sea shells.", price:1479, stock:67)
+
+product lineup
+
+bamboo flute
+bamboo stick
+wood calculator
+sungka
+seashell
+rattan basket
+rattan chair
+bamboo dress
+wood chimes
+bamboo mac bag

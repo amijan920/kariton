@@ -4,6 +4,13 @@
 
 var cartFilter = false;
 var outOfStockFilter = false;
+var dateFilter = null;
+
+$.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+}
 
 var collapseTile = function(tile) {
   targetHeight = 210;
@@ -26,6 +33,7 @@ var expandTile = function(tile) {
   // tile.animate({"height": targetHeight}, function() {
   //   $('#item-view').isotope( 'layout', function(){} )
   // });
+
   tile.addClass("active");
   tile.find(".expanded-info").slideDown(400, function() {
     $('#item-view').isotope( 'layout', function(){} )
@@ -56,25 +64,40 @@ var filter = function() {
       return false;
     if(!cartFilter && outOfStockFilter && $(this).hasClass('out-of-stock'))
       return false;
+    if(dateFilter && dateFilter != $(this).data("date"))
+      return false;
     return pattern.test(name);
   } });
 }
 
 var onViewCartClick = function(e) {
   cartFilter = true;
+  $.cookie("cartFilter", true);
+
   $("#show-all-tool").removeClass("active");
   $("#view-cart-tool").addClass("active");
   $("#item-view").addClass("cart-item-view");
   $("#cart-view").slideDown();
+  $(".add-item").slideUp(400);
+  $(".remove-item").slideDown(400, function() {
+    $('#item-view').isotope( 'layout', function(){} );
+  });
+
   filter();
 }
 
 var onViewItemsClick = function(e) {
   cartFilter = false;
+  $.cookie("cartFilter", false);
+
   $("#view-cart-tool").removeClass("active");
   $("#show-all-tool").addClass("active");
   $("#item-view").removeClass("cart-item-view");
   $("#cart-view").slideUp();
+  $(".add-item").slideDown(400, function() {
+    $('#item-view').isotope( 'layout', function(){} );
+  });
+  $(".remove-item").slideUp(400);
   filter();
 }
 
@@ -108,6 +131,25 @@ var ready = function() {
   $("#show-all-tool").click(onViewItemsClick);
   $("#hide-out-tool").click(toggleOutOfStock);
   $("#item-filter").keyup(onType);
+
+  $("#date-filter").change(function(e) {
+    console.log(cart_history);
+    index = $(this).val();
+    if(index === "-1") {
+      dateFilter = undefined;
+
+      $("#cart-total").text("Overall Total: " + overall);
+      $("#cart-total").digits();
+      filter();
+
+      return;
+    }
+
+    dateFilter = dates[index];
+    $("#cart-total").text("Total: " + cart_history[index].total);
+    $("#cart-total").digits();
+    filter();
+  });
 }
 
 $(document).ready(ready)

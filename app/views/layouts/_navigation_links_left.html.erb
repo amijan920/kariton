@@ -3,6 +3,11 @@
 
 <% end %>
 <% if user_signed_in? %>
-  <li><a id="view-items">Order History</a><!-- <a id="view-cart">View Cart (<%= @cart_items.length %>)</a> --></li>
-  <li><%= link_to 'Browse Items', root_url, id: 'view-items' %></li>
+	<% if @cart_hist %>
+  	<li class="active-link"><a  href="#">Cart History</a></li>
+  	<li><%= link_to 'Browse Items', root_url, id: 'view-items' %></li>
+  <% else %>
+  	<li><a href="/cartHistory">Cart History</a></li>
+  <li class="active-link"><%= link_to 'Browse Items', "#", id: 'view-items' %></li>
+  <% end %>
 <% end %>

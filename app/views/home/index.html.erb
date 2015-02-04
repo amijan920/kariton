@@ -1,12 +1,3 @@
-<% if @tester.nil? %>
-			<%=@tester%>
-			<%end%>
-
-<h2 style="margin-top:0px">Browse Items</h2>
-<!-- <div id="search-bar">
-	<div class="search-label">
-		Browse our Items
-	</div> -->
 <div class= "row">
 	<div class="col-md-12">
 	<div id="item-tools">
@@ -18,7 +9,6 @@
 				<ul>
 					<li><a id="view-cart-tool" class="tool">View Cart (<%= @cart_quantity %>)</a></li>
 					<li><a id="show-all-tool" class="tool active right">Show All Items</a></li>
-					<!-- <li><a id="hide-out-tool" class="tool">Hide Out of Stock</a></li> -->
 				</ul>
 			</span>
 		<% end %>
@@ -28,14 +18,15 @@
 <!-- </div> -->
 
 <script>
+	dateFilter = undefined;
 	itemList = <%= raw @items_list.to_json %>
 </script>
 
 <div id="item-view">
 	<% @items_list.each_with_index do |i_item, index| %>
 
-		<% if user_signed_in? && inCart?(i_item.id) > 0
-			q_inCart = inCart?(i_item.id) %>
+		<% if user_signed_in? && inCart?(i_item.id)[0] > 0
+			q_inCart = inCart?(i_item.id)[0] %>
 			<div class="item-tile in-cart" data-index=<%= index %>, data-toggled=0>
 		<!-- 	<div class="in-cart-number">
 				<%= q_inCart %> in cart
@@ -70,8 +61,8 @@
 							<strong><%= i_item.stock %></strong> in stock
 						<% end %>
 					</div>
-					<% if user_signed_in? && inCart?(i_item.id) > 0
-						q_inCart = inCart?(i_item.id) %>
+					<% if user_signed_in? && inCart?(i_item.id)[0] > 0
+						q_inCart = inCart?(i_item.id)[0] %>
 						<!-- <div class="item-tile in-cart" data-index=<%= index %>, data-toggled=0> -->
 						<div class="in-cart-count">
 							You have <strong><%= q_inCart %></strong> in cart
@@ -79,16 +70,28 @@
 					<% end %>
 
 					<div class="form">
-						<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do |f| %>
-							<%= hidden_field_tag(:itemId, i_item.id) %>
-							<% if i_item.stock > 0 %>
-								<%= number_field(:item, :quantity, :value => 0, in: 0..i_item.stock, step: 1, :class => "item-quantity") %>
+						<div class="add-item">
+							<%= form_tag url_for(:controller => "home", :action => "addItemToCart"), :method => "post" do |f| %>
+								<%= hidden_field_tag(:itemId, i_item.id) %>
+								<% if i_item.stock > 0 %>
+									<%= number_field(:item, :quantity, :value => 1, in: 1..i_item.stock, step: 1, :class => "item-quantity") %>
+								<% end %>
+								<% if user_signed_in? && inCart?(i_item.id)[0] > 0 %>
+									<%= submit_tag "Add More To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
+								<% elsif %>
+									<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
+								<%end %>
 							<% end %>
-							<% if user_signed_in? && inCart?(i_item.id) > 0 %>
-								<%= submit_tag "Add More To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
-							<% elsif %>
-								<%= submit_tag "Add To Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn", :disabled => (i_item.stock == 0) %> 
-							<%end %>
+						</div>
+
+						<% if user_signed_in? && inCart?(i_item.id)[0] > 0
+							q_inCart = inCart?(i_item.id) %>
+							<div class="remove-item">
+								<%= form_tag url_for(:controller => "home", :action => "removeItemFromCart"), :method => "post" do |f| %>
+									<%= hidden_field_tag(:cartItemId, q_inCart[1]) %>
+									<%= submit_tag "Remove from Cart", :action => 'addItemToCart', :controller => 'home', :class => "kariton-btn remove-btn" %> 
+								<% end %>
+							</div>
 						<% end %>
 					</div>
 				</div>
@@ -105,7 +108,7 @@
 			<% end %> 
 		<% end %>
 
-		<%= form_tag url_for(:controller => "home", :action => "checkoutCart"), :method => "post" do %>
+		<%= form_tag url_for(:controller => "home", :action => "checkoutView"), :method => "post" do %>
 			<%= button_tag "", :id => "cart-check-out", :class => "gray-button", :disabled => (@cart_quantity == 0) do%>
 				Check out Cart
 			<% end %> 
