@@ -322,6 +322,7 @@ a:hover {
 }
 
 .item-tool-row {
+  height:50px;
   background: #256E62;
   padding:0px;
 }
