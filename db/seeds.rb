@@ -42,7 +42,7 @@ Item.create(name: "Bamboo-mac-case", description: "Steve Jobs also recommends th
 
 Item.create(name: "Rattan Chair", description: "Sturdier and looks more fabulous than a bamboo chair. But why not buy both", price:3299, stock:39, image:"items/rattan-chair.jpg")
 
-Item.create(name: "Wooden Chimes", description: "If you hate the high pitched sounds of a glass/metal chime, this is for you.", price:1399, stock:42, image:"items/wood-chime.jpg")
+Item.create(name: "Wooden Chimes", description: "If you hate the high pitched sounds of a glass/metal chime, this is for you.", price:1399, stock:42, image:"items/wood-chimes.jpg")
 
 Item.create(name: "Rattan Basket", description: "I really hate to ask it, but do you have a basket? If you don't buy now.", price:189, stock:131, image:"items/rattan-basket.jpg")
 
