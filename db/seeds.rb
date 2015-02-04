@@ -46,6 +46,6 @@ Item.create(name: "Wooden Chimes", description: "If you hate the high pitched so
 
 Item.create(name: "Rattan Basket", description: "I really hate to ask it, but do you have a basket? If you don't buy now.", price:189, stock:131, image:"items/rattan-basket.jpg")
 
-Item.create(name: "Wooden Calculator", description: "Want a wooden math thing but don't want an abacus? Buy this.", price:3200, stock:35, image:"items/rattan-bag.jpg")
+Item.create(name: "Wooden Calculator", description: "Want a wooden math thing but don't want an abacus? Buy this.", price:3200, stock:35, image:"items/wood-calculator.jpg")
 
 Item.create(name: "Sungka", description: "Don't believe what old people say about not playing this at home. Comes with the shells.", price:1799, stock:21, image:"items/sungka.jpg")
