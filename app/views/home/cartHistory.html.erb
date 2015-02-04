@@ -1,23 +1,28 @@
 <div class= "row">
 	<div class="col-md-12">
 		<div id="item-tools">
-			<div style="float:left">
-				<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+			<div class="col-md-6 col-sm-12 col-xs-12 item-tool-row">
+				<div style="float:left">
+					<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+				</div>
 			</div>
-			<span style="float:right">
-				<select id="date-filter" place-holder="Filter by date">
-						<option value="-1">
-							Show all
-						</option>
-						<% dates = Array.new(@cart_history[0].length) %>
-						<% @cart_history[0].each_with_index do |cart, i|%>
-							<option value="<%=i%>">
-								<%= cart.checkout_date.strftime("%B %-d, %Y %l:%M %P") %>
-								<% dates[i] = cart.checkout_date.strftime("%B %-d, %Y %l:%M %P") %>
+
+			<div class="col-md-6 col-sm-12 col-xs-12 item-tool-row">
+				<span style="float:right">
+					<select id="date-filter" place-holder="Filter by date">
+							<option value="-1">
+								Show all
 							</option>
-						<%end%>
-				</select>
-			</span>
+							<% dates = Array.new(@cart_history[0].length) %>
+							<% @cart_history[0].each_with_index do |cart, i|%>
+								<option value="<%=i%>">
+									<%= cart.checkout_date.strftime("%B %-d, %Y %l:%M %P") %>
+									<% dates[i] = cart.checkout_date.strftime("%B %-d, %Y %l:%M %P") %>
+								</option>
+							<%end%>
+					</select>
+				</span>
+			</div>
 		</div>
 	</div>
 </div>

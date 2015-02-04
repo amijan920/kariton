@@ -1,18 +1,27 @@
 <div class= "row">
 	<div class="col-md-12">
-	<div id="item-tools">
-		<div style="float:left">
-			<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+		<div id="item-tools">
+			<!-- <div class="row"> -->
+				<div class="col-md-6 col-sm-12 col-xs-12 item-tool-row">
+					<div style="float:left">
+						<input class="form-control" id="item-filter" type="text" placeholder="Filter Items"/>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 col-xs-12 item-tool-row">
+					<% if user_signed_in? %>
+						<span style="float:right">
+							<ul>
+								<% if @cart_quantity == 0 %>
+									<li><a id="view-cart-tool" class="tool"></span> View Cart <div class="notif zero"><%= @cart_quantity %></div></a></li>
+								<% else %>
+									<li><a id="view-cart-tool" class="tool"></span> View Cart <div class="notif"><%= @cart_quantity %></div></a></li>
+								<%end%>
+								<li><a id="show-all-tool" class="tool active right">Show All Items</a></li>
+							</ul>
+						</span>
+					<% end %>
+				</div>
 		</div>
-		<% if user_signed_in? %>
-			<span style="float:right">
-				<ul>
-					<li><a id="view-cart-tool" class="tool">View Cart (<%= @cart_quantity %>)</a></li>
-					<li><a id="show-all-tool" class="tool active right">Show All Items</a></li>
-				</ul>
-			</span>
-		<% end %>
-	</div>
 	</div>
 </div>
 <!-- </div> -->
